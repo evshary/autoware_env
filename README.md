@@ -25,3 +25,13 @@ source /opt/autoware/setup.zsh
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
 ```
+
+## For developers
+
+* Please use `pre-commit` to align the coding style
+
+```bash
+sudo apt install shellcheck pipx
+pipx install pre-commit
+pre-commit install --install-hooks
+```
