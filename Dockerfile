@@ -33,6 +33,7 @@ USER $USERNAME
 
 # Environment
 ENV DOCKER_IMAGE=autoware-humble
+ENV TERM=xterm-256color
 RUN echo 'source /opt/autoware/setup.bash' >> ~/.bashrc
 RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc
 
