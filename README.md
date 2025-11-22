@@ -20,11 +20,27 @@ unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
 
 * Run the planning simulator
 
-```bash
-source /opt/autoware/setup.zsh
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
-```
+  * CycloneDDS
+
+    ```bash
+    source /opt/autoware/setup.bash
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
+    ```
+
+  * Zenoh
+
+    ```bash
+    # Run patch
+    ./patch/patch.sh
+    # Setup the environment
+    source /opt/autoware/setup.bash
+    export RMW_IMPLEMENTATION=rmw_zenoh_cpp
+    # 1st terminal
+    ros2 run rmw_zenoh_cpp rmw_zenohd
+    # 2nd terminal
+    ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
+    ```
 
 ## For developers
 
