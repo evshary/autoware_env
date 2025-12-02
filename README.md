@@ -2,6 +2,8 @@
 
 Easily create an environment to try Autoware.
 
+Autoware Version: 1.5.0
+
 ## Usage
 
 * Enter the Autoware container
@@ -31,13 +33,13 @@ unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
   * Zenoh
 
     ```bash
-    # Run patch
+    # Run patch (Only needed for the first time)
     ./patch/patch.sh
     # Setup the environment
     source /opt/autoware/setup.bash
     export RMW_IMPLEMENTATION=rmw_zenoh_cpp
-    # 1st terminal
-    ros2 run rmw_zenoh_cpp rmw_zenohd
+    # 1st terminal (Show the debug log)
+    RUST_LOG=z=debug ros2 run rmw_zenoh_cpp rmw_zenohd
     # 2nd terminal
     ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
     ```
