@@ -19,6 +19,12 @@ RUN apt-get install -y ros-humble-moveit-msgs \
                        ros-humble-octomap-msgs \
                        ros-humble-rmw-zenoh-cpp
 
+# Install zenoh-bridge-ros2dds
+RUN curl -L https://download.eclipse.org/zenoh/debian-repo/zenoh-public-key | sudo gpg --dearmor --yes --output /etc/apt/keyrings/zenoh-public-key.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/zenoh-public-key.gpg] https://download.eclipse.org/zenoh/debian-repo/ /" | sudo tee -a /etc/apt/sources.list > /dev/null
+RUN apt-get update
+RUN apt-get install zenoh-bridge-ros2dds
+
 # Make user able to use sudo
 ARG USERNAME=ros2
 ARG UID=1000
